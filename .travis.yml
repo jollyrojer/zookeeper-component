@@ -1,0 +1,22 @@
+language: ruby
+gemfile:
+- Gemfile
+rvm:
+- 1.9.3
+env:
+  global:
+  - secure: EdLuiXMM6luz1FGEHUhZov4TksMKtvbq+9gGVXtiQFCkdbN8ca7TJm7AH1SZNpiwQqUhghAlvEept0wn9LdL0ftiDP/jayUYrBoT56l/2n7v07TSD72EtF6PadOoNnvxL27kFNAFyGxq95V/PERh28JbcLtOHuHjaoamxaQz/B8=
+  - secure: evQpR9cqk+gD67xWZ1J2lkFYcHiqCRXkCsb2ZGD4xR+A367Pzkov9a25MbsbN1Jr4W/r/dLLcRyOac5NDmHhDZ4nRCdG7WQ2P1LQCRwJxiqV+a97Ppv+XbcjioufBY/SoTweL6O6wUkLXw6OaUQZlhIc8+TZB22ZFvvP09E2LYw=
+  - secure: Mrj7RJCd/RfpDoWSdrWUjHBVwzj+ayP0GhXjwmJ1mj4GCzvcf64snIFo7HJuoYxb8dgBwbTop/MUd7vPTACX3xP0J3BoIvIlP06XatQvmyMZKv5VFOrTM38ga5ktg0RlC/sDLnZmDA4MpdG3Fo/OIcCFjHgYE3FBQjxqqpPoLKY=
+  matrix:
+  - KITCHEN_INSTANCE='default-ubuntu-1204'
+  - KITCHEN_INSTANCE='default-ubuntu-1004'
+  - KITCHEN_INSTANCE='default-centos-64'
+  - KITCHEN_INSTANCE='default-centos-53'
+script:
+- bundle exec kitchen test $KITCHEN_INSTANCE
+after_script:
+- bundle exec kitchen destroy $KITCHEN_INSTANCE
+notifications:
+  email:
+  - abutovich@qubell.com
