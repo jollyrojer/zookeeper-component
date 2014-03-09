@@ -26,14 +26,13 @@ end
 
 include_recipe "zookeeper"
 
-if platform_family?('rhel')
-  execute "stop iptables" do
-    command "if [ -e '/sbin/iptables' ]; then bash -c '/etc/init.d/iptables stop'; else echo $?; fi"
+case node[:platform_family]
+  when "rhel"
+    service "iptables" do
+      action :stop
+    end
+  when "debian"
+    service "ufw" do
+      action :stop
+    end
   end
-end
-
-if platform_family?('debian')
-  execute "stop iptables" do
-    command "if [ -e '/sbin/iptables' ]; then bash -c ' iptables -F'; else echo $?; fi"
-  end
-end
