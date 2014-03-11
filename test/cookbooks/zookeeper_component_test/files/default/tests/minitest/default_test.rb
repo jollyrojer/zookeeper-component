@@ -34,7 +34,7 @@ describe_recipe "zookeeper-component::default" do
       end
   end
   it "creates defaultconfig.exhibitor" do
-    assert_file "#{node[:exhibitor][:opts][:defaultconfig]}", "root", "root", "644"
+    assert_file "#{node[:exhibitor][:opts][:defaultconfig]}", "#{node["zookeeper"]["user"]}", "#{node["zookeeper"]["group"]}", "644"
   end
   it "check /etc/init/exhibitor.conf has correct values" do
     assert_include_content("/etc/init/exhibitor.conf", "#{node["zookeeper"]["user"]}")
