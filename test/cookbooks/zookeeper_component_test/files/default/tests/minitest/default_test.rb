@@ -4,7 +4,7 @@ def assert_include_content(file, content)
   assert File.read(file).include?(content), "Expected file '#{file}' to include the specified content"
 end
 
-sleep(20)
+sleep(60)
 require 'socket'
 require 'timeout'
 def is_port_open?(ip, port)
@@ -34,7 +34,7 @@ describe_recipe "zookeeper-component::default" do
       end
   end
   it "creates defaultconfig.exhibitor" do
-    assert_file "#{node[:exhibitor][:opts][:defaultconfig]}", "#{node["zookeeper"]["user"]}", "#{node["zookeeper"]["group"]}", "644"
+    assert_file "#{node[:exhibitor][:opts][:defaultconfig]}", "#{node["zookeeper"]["user"]}", "root", "644"
   end
   it "check /etc/init/exhibitor.conf has correct values" do
     assert_include_content("/etc/init/exhibitor.conf", "#{node["zookeeper"]["user"]}")
