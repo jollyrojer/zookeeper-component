@@ -8,7 +8,7 @@ Install addition Exhibitor management interface for ZooKeeper.
 Platform
 --------
 - Ubuntu 10.04, 12.04 (x32/x64)
-- CentOS 5, 6 (x64)
+- CentOS 6 (x64)
 
 Cookbooks
 ---------
