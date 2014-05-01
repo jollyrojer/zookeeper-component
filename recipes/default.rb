@@ -19,7 +19,7 @@ template node[:exhibitor][:opts][:defaultconfig] do
 end
 
 template "/etc/init/exhibitor.conf" do
-    cookbook "cookbook-qubell.zookeeper"
+    cookbook "cookbook-qubell-zookeeper"
     source "exhibitor.upstart.conf.erb"
     action :nothing
 end
