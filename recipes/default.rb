@@ -13,13 +13,13 @@ if (node[:zookeeper][:hosts].nil?)
 end
 
 template node[:exhibitor][:opts][:defaultconfig] do
-  cookbook "zookeeper-component"
+  cookbook "cookbook-qubell-zookeeper"
   source "defaultconfig.exhibitor.erb"
   action :nothing
 end
 
 template "/etc/init/exhibitor.conf" do
-    cookbook "zookeeper-component"
+    cookbook "cookbook-qubell.zookeeper"
     source "exhibitor.upstart.conf.erb"
     action :nothing
 end
