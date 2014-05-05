@@ -58,7 +58,7 @@ suites:
   - name: default
     run_list:
       - recipe[minitest-handler]
-      - recipe[zookeeper_component_test]
+      - recipe[cookbook-qubell-zookeeper_test]
     attributes: {"exhibitor": 
                   {"opts": 
                      {"port": "8091"}
