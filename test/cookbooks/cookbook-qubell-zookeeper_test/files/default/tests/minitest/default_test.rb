@@ -24,7 +24,7 @@ def is_port_open?(ip, port)
   return false
 end
 
-describe_recipe "zookeeper-component::default" do
+describe_recipe "cookbook-qubell-zookeeper::default" do
   it "is firewall disabled" do
     case node["platform_family"] 
       when 'rhel'

@@ -1,4 +1,4 @@
-name "zookeeper-component"
+name "cookbook-qubell-zookeeper"
 version "0.1.0"
 
 depends "build-essential", "1.4.2"
