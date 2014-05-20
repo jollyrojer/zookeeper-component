@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jollyrojer/zookeeper-component.png?branch=master)](https://travis-ci.org/jollyrojer/zookeeper-component)
+[![Build Status](https://travis-ci.org/qubell-bazaar/cookbook-qubell-zookeeper.png?branch=master)](https://travis-ci.org/qubell-bazaar/cookbook-qubell-zookeeper)
 
 ZooKeeper Cookbook
 ==============
@@ -12,6 +12,6 @@ Platform
 
 Cookbooks
 ---------
-depends "build-essential", "1.4.2"
+depends "build-essential", "1.4.4"
 depends "java", "1.11.7"
-depends "zookeeper", "1.4.8"
+depends "zookeeper", "1.7.3"

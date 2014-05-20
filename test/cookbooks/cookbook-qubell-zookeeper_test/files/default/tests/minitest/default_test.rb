@@ -36,9 +36,6 @@ describe_recipe "cookbook-qubell-zookeeper::default" do
   it "creates defaultconfig.exhibitor" do
     assert_file "#{node[:exhibitor][:opts][:defaultconfig]}", "#{node["zookeeper"]["user"]}", "root", "644"
   end
-  it "check /etc/init/exhibitor.conf has correct values" do
-    assert_include_content("/etc/init/exhibitor.conf", "#{node["zookeeper"]["user"]}")
-  end
   it "exhibitor is listening" do
     assert is_port_open?("#{node["ipaddress"]}", "#{node["exhibitor"]["opts"]["port"]}") == true, "Expected port #{node["exhibitor"]["opts"]["port"]} is open"
   end
