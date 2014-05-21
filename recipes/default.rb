@@ -1,28 +1,26 @@
 # utility 'patch' is not included in build-essentials cookbook
 # so we need instal it in this way
 
+# Support build-essential <= 1.4.4
+node.set[:build_essential][:compiletime] = true
+
 p = package "patch" do
   action :install
 end
 p.run_action(:install)
 
-node.set[:exhibitor][:opts][:defaultconfig]="#{node[:exhibitor][:install_dir]}/defaultconfig.exhibitor"
-
 if (node[:zookeeper][:hosts].nil?)
   node.normal[:zookeeper][:hosts]=[ node[:ipaddress] ]
 end
 
-template node[:exhibitor][:opts][:defaultconfig] do
-  cookbook "cookbook-qubell-zookeeper"
-  source "defaultconfig.exhibitor.erb"
-  action :nothing
+tmp_arr = []
+node["zookeeper"]["hosts"].each_with_index do |e,i|
+   tmp_arr << "S:#{i+1}:#{e}"
 end
 
-template "/etc/init/exhibitor.conf" do
-    cookbook "cookbook-qubell-zookeeper"
-    source "exhibitor.upstart.conf.erb"
-    action :nothing
-end
+node.set[:exhibitor][:defaultconfig][:servers_spec]=tmp_arr.join(",")
+node.set[:exhibitor][:defaultconfig][:zoo_cfg_extra] = 'tickTime\=2000&initLimit\=60&syncLimit\=5'
+node.set[:exhibitor][:defaultconfig][:auto_manage_instances_settling_period_ms] = 1000
 
 include_recipe "zookeeper"
 
