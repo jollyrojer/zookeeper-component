@@ -34,3 +34,5 @@ case node[:platform_family]
       action :stop
     end
   end
+
+node.set["zookeeper"]["connect_uri"] = node["zookeeper"]["hosts"].map {|x| "#{x}:#{node["exhibitor"]["defaultconfig"]["client_port"]}"}.join(",")
