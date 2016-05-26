@@ -22,6 +22,10 @@ node.set[:exhibitor][:defaultconfig][:servers_spec]=tmp_arr.join(",")
 node.set[:exhibitor][:defaultconfig][:zoo_cfg_extra] = 'tickTime\=2000&initLimit\=60&syncLimit\=5'
 node.set[:exhibitor][:defaultconfig][:auto_manage_instances_settling_period_ms] = 1000
 
+if (node[:ipaddress].nil?)
+  node.set[:exhibitor][:opts][:hostname] = node[:network][:interfaces][node[:network][:default_interface]][:addresses].select{|k,v| v.family == "inet"}.keys[0]
+end
+
 include_recipe "zookeeper"
 
 case node[:platform_family]
